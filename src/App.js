@@ -6,10 +6,12 @@ function App() {
   return (
     <div className="App">
 
-      <Navbar />
-      <WeatherPanel />
-      
-    </div>
+        <Navbar />
+        
+        <WeatherPanel />
+        
+        
+      </div>  
   );
 }
 

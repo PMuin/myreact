@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import Form from "./Form";
-import Card from "./Card";
+import React, {useState} from 'react';
+import Form from './Form';
+import Card from './Card';
 
 
 const WeatherPanel = () => {
@@ -8,7 +8,7 @@ const WeatherPanel = () => {
     let urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=d6672e6e583d04ba6d22cd30aeb70e7a&lang=es";
     let cityUrl = "&q=";
 
-    let urlForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=d6672e6e583d04ba6d22cd30aeb70e7a&lang=es";
+    let urlForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=d6672e6e583d04ba6d22cd30aeb70e7a&lang=es"
     
     const [weather, setWeather] = useState([]);
     const [forecast, setForecast] = useState([]);
@@ -20,12 +20,12 @@ const WeatherPanel = () => {
         setLoading(true);
         setLocation(loc);
 
-        //weather
+        //real weather
 
         urlWeather = urlWeather + cityUrl + loc;
 
-        await fetch(urlWeather).then((response) => {
-            if (!response.ok) throw {response}
+        await fetch(urlWeather).then((response) =>{
+            if(!response.ok) throw {response}
             return response.json();
         }).then((weatherData) =>{
             console.log(weatherData);
@@ -40,15 +40,15 @@ const WeatherPanel = () => {
 
         urlForecast = urlForecast + cityUrl + loc;
 
-        await fetch(urlForecast).then((response) => {
-            if (!response.ok) throw {response}
+        await fetch(urlForecast).then((response) =>{
+            if(!response.ok) throw {response}
             return response.json();
         }).then((forecastData) =>{
             console.log(forecastData);
             setForecast(forecastData);
 
             setLoading(false);
-            setShow(false);
+            setShow(true);
 
         }).catch(error =>{
             console.log(error);
@@ -63,9 +63,9 @@ const WeatherPanel = () => {
     return(
 
         <React.Fragment>
-
-           <Form
-                newLocation = {getLocation} 
+    
+            <Form
+                newLocation = {getLocation}
             />
 
             <Card
@@ -74,7 +74,6 @@ const WeatherPanel = () => {
                 weather = {weather}
                 forecast = {forecast}
             />
-
 
 
         </React.Fragment>
